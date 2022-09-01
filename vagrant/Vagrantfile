@@ -1,0 +1,18 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  config.vm.provider "libvirt" do |vb|
+     vb.memory = "2048"
+     vb.cpus = 2
+  end
+
+  # 
+  config.vm.define "mongo-1" do |conf|
+    conf.vm.box = "generic/ubuntu2004"
+    conf.vm.hostname = 'mongo-1.local'
+    conf.vm.provision "shell", path: "scripts/Ubuntu/bootstrap.sh"
+  end 
+
+end
